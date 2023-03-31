@@ -1,0 +1,181 @@
+.todo_container {
+  background-color: white;
+  width: 100%;
+  padding: 4% 8%;
+  text-align: center;
+  color: black;
+}
+
+.todo_title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin: 0;
+}
+
+.todo_first-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  width: 100%;
+  gap: 5%;
+}
+
+input[type="search"] {
+  padding: 1rem;
+  border: 2px solid lightskyblue;
+  text-align: center;
+  color: #29a5f2;
+  font-size: 1.1rem;
+  width: 80%;
+}
+
+input[type="search"]::placeholder {
+  font-size: 1.1rem;
+}
+
+input[type="search"]:focus {
+  outline: none;
+  border: 2px solid darkorange;
+}
+
+input[type="ckeckbox"] {
+  width: 5rem;
+  height: 10rem;
+}
+
+input:checked + label {
+  text-decoration: line-through;
+}
+
+.todo_add-button {
+  background-color: lightskyblue;
+  color: white;
+  padding: 0.65rem 1.5rem;
+  border: none;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.todo_second-section {
+  background-color: #f5fbff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  color: #29a5f2;
+  font-size: 1.4rem;
+
+  /* gap: 5%;
+  width: 100%; */
+}
+
+.flex_left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-right: auto;
+  column-gap: 3%;
+  width: 70%;
+  cursor: pointer;
+}
+
+.flex_right {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 0.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: lightskyblue;
+  opacity: 0.8;
+}
+
+.todo_third-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+}
+
+.todo_third-section > div {
+  background: linear-gradient(to right, yellow 50%, white 50%);
+  margin-right: auto;
+  padding: 0.5rem;
+  width: 45%;
+  border: 1px solid lightgrey;
+}
+
+.todo_third-section > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  column-gap: 0.5rem;
+  padding: 0.7rem;
+  background-color: #56b8f5;
+  border: 1px solid lightskyblue;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Breakpoin */
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .todo_container {
+    padding: 4% 5%;
+  }
+
+  .todo_third-section > div {
+    font-size: 0.8rem;
+  }
+
+  .todo_third-section > button {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  input[type="search"] {
+    padding: 2.1%;
+  }
+
+  input[type="search"]::placeholder {
+    font-size: 3vw;
+  }
+
+  .todo_container {
+    width: 90vw;
+    padding: 4%;
+  }
+
+  .todo_add-button {
+    font-size: 1rem;
+    padding: 3% 4%;
+  }
+
+  .todo_second-section {
+    font-size: 3.5vw;
+  }
+
+  .flex_right {
+    font-size: 4vw;
+  }
+
+  .todo_third-section>div {
+    padding: 2%;
+    font-size: 3vw;
+    width: 45%;
+  }
+
+  .todo_third-section>button {
+    padding: 3%;
+    column-gap: 3%;
+    font-size: 3vw;
+    padding: 2.2% 2%;
+    width: 45%;
+  }
+}

@@ -25,7 +25,6 @@ input[type="search"] {
   border: 2px solid lightskyblue;
   text-align: center;
   color: #29a5f2;
-  font-size: 1.1rem;
   width: 80%;
 }
 
@@ -36,11 +35,6 @@ input[type="search"]::placeholder {
 input[type="search"]:focus {
   outline: none;
   border: 2px solid darkorange;
-}
-
-input[type="ckeckbox"] {
-  width: 5rem;
-  height: 10rem;
 }
 
 input:checked + label {
@@ -154,7 +148,7 @@ input:checked + label {
 
   .todo_add-button {
     font-size: 1rem;
-    padding: 3% 4%;
+    padding: 2.5% 4%;
   }
 
   .todo_second-section {
@@ -168,7 +162,7 @@ input:checked + label {
   .todo_third-section>div {
     padding: 2%;
     font-size: 3vw;
-    width: 45%;
+    width: 42%;
   }
 
   .todo_third-section>button {
@@ -176,6 +170,6 @@ input:checked + label {
     column-gap: 3%;
     font-size: 3vw;
     padding: 2.2% 2%;
-    width: 45%;
+    width: 42%;
   }
 }

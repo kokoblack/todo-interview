@@ -1,65 +1,19 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  background-color: white;
-  /* max-width: 100; */
-  width: 100%;
-  padding: 4% 10%;
-  text-align: center;
-  color: black;
-`;
-
-export const MoveLeft = styled.div`
+export const Progress = styled.div`
+  background: linear-gradient(to right, yellow %, white 50%);
   margin-right: auto;
-  width: 50%;
-`;
+  padding: 0.5rem;
+  width: 45%;
+  border: 1px solid lightgrey;
 
-export const MoveRight = styled.div`
-  margin-left: auto;
-`;
-
-export const BigText = styled.h1`
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  margin: 0;
-`;
-
-export const Flex = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
-  width: 100%;
-`;
-
-export const AddTodoContainer = styled(Flex)`
-  gap: 1%;
-`;
-
-export const InputText = styled.input`
-  padding: 1rem;
-  border: 2px solid lightskyblue;
-  text-align: center;
-  color: blueviolet;
-
-  &::placeholder {
-    color: lightskyblue;
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    font-size: 0.8rem;
   }
 
-  &:focus {
-    outline: none;
-    border: 2px solid darkorange;
+  @media screen and (max-width: 480px) {
+    padding: 2%;
+    font-size: 3vw;
+    width: 42%;
   }
-`;
-
-export const AddButton = styled.button`
-  background-color: lightskyblue;
-  color: white;
-  padding: 1rem;
-  border: none;
-  font-size: 1rem;
-`;
-
-export const TodoContainer = styled(Flex)`
-  background-color: lightskyblue;
-  opacity: 0.5;
 `;

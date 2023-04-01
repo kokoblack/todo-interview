@@ -26,10 +26,11 @@ input[type="search"] {
   text-align: center;
   color: #29a5f2;
   width: 80%;
+  font-size: 1.3rem;
 }
 
 input[type="search"]::placeholder {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 input[type="search"]:focus {
@@ -48,6 +49,7 @@ input:checked + label {
   border: none;
   font-size: 1.5rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .todo_second-section {
@@ -55,7 +57,7 @@ input:checked + label {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: .5rem;
   padding: 1rem;
   color: #29a5f2;
   font-size: 1.4rem;
@@ -94,12 +96,26 @@ input:checked + label {
 }
 
 .todo_third-section > div {
-  background: linear-gradient(to right, yellow 50%, white 50%);
-  margin-right: auto;
+  --progress: 0%;
   padding: 0.5rem;
   width: 45%;
   border: 1px solid lightgrey;
+  margin-right:  auto;
+  position: relative;
+  z-index: 1;
 }
+
+.todo_third-section > div::before {
+    content: '';
+    position: absolute;
+    background: yellow ;
+    top: 0; bottom: 0;
+    left: 0; 
+    width: var(--progress); 
+    z-index: -1;
+    /* Specify the width.. */
+}
+
 
 .todo_third-section > button {
   display: flex;
@@ -123,6 +139,14 @@ input:checked + label {
     padding: 4% 5%;
   }
 
+  input[type="search"] {
+    font-size: 1rem;
+  }
+
+  input[type="search"]::placeholder {
+    font-size: 1rem;
+  }
+
   .todo_third-section > div {
     font-size: 0.8rem;
   }
@@ -134,11 +158,12 @@ input:checked + label {
 
 @media screen and (max-width: 480px) {
   input[type="search"] {
-    padding: 2.1%;
+    padding: 2.7%;
+    font-size: 3.5vw;
   }
 
   input[type="search"]::placeholder {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 
   .todo_container {

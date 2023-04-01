@@ -1,44 +1,126 @@
 import { MdClose, MdModeEdit, MdAdd } from "react-icons/md";
-import {
-  Container,
-  BigText,
-  AddTodoContainer,
-  MoveLeft,
-  MoveRight,
-  TodoContainer,
-  InputText,
-  AddButton,
-  Flex,
-} from "./Style";
-import "./Todo.css"
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { add, del, multipleDel, update, getLocalStorageTodo } from "../features/todoSlice";
+import { useRef, useEffect } from "react";
+import "./Todo.css";
 
 const Todo = () => {
+  
+  const todo = useAppSelector((state) => state.todo);
+  const dispatch = useAppDispatch();
+  console.log(todo);
+
+  const done = todo.filter((e) => {
+    return e.ifChecked === true;
+  });
+  const progress = (done.length / todo.length)
+
+  const inputRef = useRef("");
+  const progressRef = useRef<HTMLDivElement>(null)
+
+  const addTodo = () => {
+    const name = todo.map((e) => e.name);
+    const checkName = name.includes(inputRef.current);
+    if (!checkName) {
+      dispatch(
+        add({
+          name: inputRef.current,
+          ifChecked: false,
+          id: 0,
+        })
+      );
+    }
+  };
+
+  useEffect(() => {
+    progressRef.current?.style.setProperty(
+      "--progress",
+      `${progress * 100}%`
+    );
+  }, [progress])
+
+  useEffect (() => {
+    const getTodos = JSON.parse(localStorage.getItem("Todos") || "[]");
+    if (getTodos.length === 0 || todo.length !== 0) {
+      localStorage.setItem("Todos", JSON.stringify(todo));
+    } else {
+      // if (todo !== getTodos) {
+      //   dispatch(getLocalStorageTodo(getTodos))
+      // }
+      dispatch(getLocalStorageTodo(getTodos))
+      console.log('i got here')
+    }
+  }, [todo])
+  
+
   return (
     <div className="todo_container">
       <h1 className="todo_title">TodoList</h1>
 
       <section className="todo_first-section">
-        <input type="search" placeholder="Click on the plus sign to add todo   ->"/>
-        <button className="todo_add-button">
+        <input
+          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === "Enter") {
+              {
+                if (inputRef.current !== "") {
+                  addTodo();
+                }
+              }
+            }
+          }}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            inputRef.current =
+              e.target.value.charAt(0).toUpperCase() +
+              e.target.value.slice(1).toLowerCase();
+          }}
+          type="search"
+          placeholder="Click on the plus sign to add todo"
+        />
+        <button
+          onClick={() => {
+            if (inputRef.current !== "") {
+              addTodo();
+            }
+          }}
+          className="todo_add-button"
+        >
           <MdAdd />
         </button>
       </section>
 
-      <section className="todo_second-section">
+      {todo.map((todos, id) => (
+        <section key={todos.name} className="todo_second-section">
           <div className="flex_left">
-            <input type="checkbox" />
-            <label>some text</label>
+            <input
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  update({ name: todos.name, checked: e.target.checked })
+                );
+              }}
+              type="checkbox"
+            />
+            <label>{todos.name}</label>
           </div>
 
           <div className="flex_right">
             <MdModeEdit />
-            <MdClose />
+            <MdClose onClick={() => dispatch(del(todos.name))} />
           </div>
-      </section>
+        </section>
+      ))}
 
       <section className="todo_third-section">
-        <div><strong>1</strong> of <strong>2</strong> task done</div>
-        <button>Removed Checked <MdClose/></button>
+        <div ref={progressRef}>
+          <strong>{done.length}</strong> of <strong>{todo.length}</strong> task done
+        </div>
+        <button
+          onClick={() => {
+            dispatch(multipleDel());
+            console.log("hi");
+          }}
+        >
+          Removed Checked <MdClose />
+        </button>
       </section>
     </div>
   );

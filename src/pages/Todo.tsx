@@ -1,6 +1,6 @@
 import { MdClose, MdModeEdit, MdAdd } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { add, del, multipleDel, update, getLocalStorageTodo } from "../features/todoSlice";
+import { add, del, multipledel, update } from "../features/todoSlice";
 import { useRef, useEffect } from "react";
 import "./Todo.css";
 
@@ -38,19 +38,6 @@ const Todo = () => {
       `${progress * 100}%`
     );
   }, [progress])
-
-  useEffect (() => {
-    const getTodos = JSON.parse(localStorage.getItem("Todos") || "[]");
-    if (getTodos.length === 0 || todo.length !== 0) {
-      localStorage.setItem("Todos", JSON.stringify(todo));
-    } else {
-      // if (todo !== getTodos) {
-      //   dispatch(getLocalStorageTodo(getTodos))
-      // }
-      dispatch(getLocalStorageTodo(getTodos))
-      console.log('i got here')
-    }
-  }, [todo])
   
 
   return (
@@ -115,8 +102,7 @@ const Todo = () => {
         </div>
         <button
           onClick={() => {
-            dispatch(multipleDel());
-            console.log("hi");
+            dispatch(multipledel());
           }}
         >
           Removed Checked <MdClose />
